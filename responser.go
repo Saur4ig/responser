@@ -23,8 +23,8 @@ func (r *Responser) EnableLogInAllResponses() {
 func (r *Responser) SendSuccessResponse(w http.ResponseWriter, body interface{}) error {
 	// create response body
 	response := success{
-		Status: StatusSuccess,
-		Data:   body,
+		Success: true,
+		Data:    body,
 	}
 
 	return r.sendResponse(w, http.StatusOK, response)
@@ -37,8 +37,8 @@ func (r *Responser) SendEmptyResponse(w http.ResponseWriter, httpStatus int) {
 func (r *Responser) SendErrorResponse(w http.ResponseWriter, httpStatus int, message string) error {
 	// create response body
 	response := withError{
-		Status: StatusError,
-		Error: err{
+		Success: false,
+		Error: Error{
 			Code:    httpStatus,
 			Message: message,
 		},
