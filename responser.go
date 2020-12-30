@@ -56,7 +56,7 @@ func (r *Responser) sendResponse(w http.ResponseWriter, httpStatus int, body int
 	}
 
 	if r.Log {
-		log.Println("response_log", data)
+		go log.Println("response_log", string(data))
 	}
 
 	w.Header().Set("Content-Type", "application/json")
